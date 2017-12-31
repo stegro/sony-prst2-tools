@@ -1,14 +1,15 @@
-# Scripts for Sony PRS-T2 Ebook Reader (and maybe others)
+# Scripts for Sony PRS-T2 Ebook Reader
 
 ## collection_generator.py
 
-Display and manipulate the SQlite databases on the Sony PRS-T2 Ebook Reader.
-Maybe this script works also for other Sony Ebook Readers, but the author does
-not have access to any and cannot test that.
+Display and manipulate the SQlite databases on the Sony PRS-T2 Ebook
+Reader.  Maybe this script works also for other Sony Ebook Readers,
+but the author does not have access to any and cannot test that. You
+are welcome to let me know if it does for you.
 
 This script generates "collections" on the ebook reader according to
 the folder structure below the books/ folder.
-See the `--help` message for more details.
+See the `./collection_generator.py --help` message for more details.
 
 ### how to use it
 
@@ -27,16 +28,18 @@ Let's assume your reader's storage (or the SD card) is mounted to /media/sonyprs
  4. Copy your ebook files onto the reader.  I put my files somewhere
  below /media/sonyprst2/Sony_Reader/media/books/
  5. **Unmount and disconnect** the reader.
- 6. Wait for the reader to index all new files. While the PRS T-2 is working, you'll see the circling
- arrow symbol.
+ 6. Wait for the reader to index all new files. While the PRS-T2 is working
+ to index the new files, you'll see the rotating arrow symbol in the topleft corner.
  7. When indexing has finished, connect the reader to the computer again and mount.
  8. Execute the collection_generator.py script. Typically like this:
 
-        ./collection_generator.py --delete-collections --generate-collections /media/stegro/sonyprst2
+        ./collection_generator.py --delete-collections --generate-collections /media/sonyprst2
 
     This first deletes all existing collections and then generates new
     collections, based on the folder structure below
-    /media/stegro/sonyprst2/Sony_media/media/books
+    /media/sonyprst2/Sony_media/media/books
+
+ 9. Unmount the reader.
 
 ## download_rfcs.sh
 
