@@ -11,6 +11,46 @@ This script generates "collections" on the ebook reader according to
 the folder structure below the books/ folder.
 See the `./collection_generator.py --help` message for more details.
 
+### Example
+
+Say, the folder structure on your Reader
+below `/media/sonyprst2/Sony_Reader/media/books` is
+
+```
+.
+  |-Physik
+  |  |-Thermodynamics & Statistics
+  |-Populaerwissenschaftliches
+  |-SNES
+  |-Statistische Methoden
+  |  |-a-student-s-guide-to-data-and-error-analysis
+  |  |-a-student-s-guide-to-dimensional-analysis
+  |  |-Bayesian Books
+  |  |  |-Bayesian econometric methods
+  |  |  |-computer-age-statistical-inference
+  |  |-A practical guide to scientific data analysis
+  |-Computer
+  |  |-hacking
+  |  |  |-Security Humblebundle
+  |  |  |-Phrack
+  |  |  |  |-phrack69
+  |  |  |-physical-layer-security
+  |  |  |-turing-s-imitation-game
+  |  |  |-wireless-internet-security
+  |  |-RFCs
+  |-Elektronik
+  |  |-Amateurfunk
+  |  |  |-adaptive-wireless-communications
+  |  |  |-analysis-and-modeling-of-radio-wave-propagation
+```
+
+then this script will allow to quickly generate collections like
+this. Note that depth can be arbitrary but the number of characters
+displayed is limited.
+
+![First Screenshot](images/screenshot1.png)
+![Second Screenshot](images/screenshot2.png)
+
 ### how to use it
 
  1. Connect the reader to your computer, using usb.
