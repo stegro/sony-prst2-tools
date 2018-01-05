@@ -5,10 +5,11 @@
 Display and manipulate the SQlite databases on the Sony PRS-T2 Ebook
 Reader.  Maybe this script works also for other Sony Ebook Readers,
 but the author does not have access to any and cannot test that. You
-are welcome to let me know if it does for you.
+are welcome to let me know if it does for you. Jailbreaking/rooting 
+the device is not needed.
 
 This script generates "collections" on the ebook reader according to
-the folder structure below the books/ folder.
+the folder structure below the `Sony_Reader/books/` folder.
 See the `./collection_generator.py --help` message for more details.
 
 ### Example
@@ -79,7 +80,9 @@ Let's assume your reader's storage (or the SD card) is mounted to /media/sonyprs
     collections, based on the folder structure below
     /media/sonyprst2/Sony_media/media/books
 
- 9. Unmount the reader.
+ 9. Unmount and disconnect the reader, wait again for the reader to devour the changes.
+    If one does not wait until the reader has finished its works, the collections list 
+    may look empty. Then just shutdown and switch the reader on again.
 
 ## download_rfcs.sh
 
