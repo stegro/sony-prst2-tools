@@ -66,7 +66,7 @@ def do_nothing(*args):
 def connect_databases(device):
     import os
     try:
-        dbfile_books = os.path.join(device, 'Sony_Reader/database/books.db')
+        dbfile_books = os.path.join(device, 'Sony_Reader','database','books.db')
         conn_books = sqlite3.connect(dbfile_books)
     except sqlite3.OperationalError as err:
         print(err)
@@ -75,7 +75,7 @@ def connect_databases(device):
         
     
     try:
-        dbfile_notepads = os.path.join(device, 'Sony_Reader/database/notepads.db')
+        dbfile_notepads = os.path.join(device, 'Sony_Reader','database','notepads.db')
         conn_notepads = sqlite3.connect(dbfile_notepads)
     except sqlite3.OperationalError as err:
         print(err)
@@ -142,7 +142,7 @@ def gen_collections(device):
     c = c_b
 
 
-    rel_path_prog = re.compile(r"^Sony_Reader/media/books/(.*)$")
+    rel_path_prog = re.compile(r"^"+os.path.join("Sony_Reader","media","books")+os.path.sep+"(.*)$")
     
     for row in c.execute('SELECT * FROM books ORDER BY title').fetchall():
         print(row)
@@ -231,10 +231,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                         help='delete all collections on the reader')
     parser.add_argument('--generate-collections', dest='gen_collections_func', action='store_const',
                         const=gen_collections, default=do_nothing,
-                        help="generate collections according to the folder structure\n below the books/ folder on the reader")
+                        help="generate collections according to the folder structure\n below the "+os.path.join("Sony_Reader","books")+" folder on the reader")
     parser.add_argument('device', action='store', nargs='?',
-                        default='.',
-                        help='The mount point of the PRS-T2. (default ./ )')
+                        default=os.path.curdir,
+                        help='The mount point of the PRS-T2. (default '+os.path.curdir+' )')
     args = parser.parse_args()
     args_vars = vars(parser.parse_args())
     print(args_vars)
