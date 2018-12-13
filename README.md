@@ -5,7 +5,7 @@
 Display and manipulate the SQlite databases on the Sony PRS-T2 Ebook
 Reader.  Maybe this script works also for other Sony Ebook Readers,
 but the author does not have access to any and cannot test that. You
-are welcome to let me know if it does for you. Jailbreaking/rooting 
+are welcome to let me know if it does for you. Jailbreaking/rooting
 the device is not needed.
 
 This script generates "collections" on the ebook reader according to
@@ -81,8 +81,16 @@ Let's assume your reader's storage (or the SD card) is mounted to /media/sonyprs
     /media/sonyprst2/Sony_media/media/books
 
  9. Unmount and disconnect the reader, wait again for the reader to devour the changes.
-    If one does not wait until the reader has finished its works, the collections list 
+    If one does not wait until the reader has finished its works, the collections list
     may look empty. Then just shutdown and switch the reader on again.
+
+
+## convert_sony_note_file.sh
+
+This script converts drawings to svg files. This is done very quickly by applying only a few lines of XSLT.
+Please see the help message for more information on how to invoke it:
+
+    convert_sony_note_file.sh --help
 
 ## download_rfcs.sh
 
