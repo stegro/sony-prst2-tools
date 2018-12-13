@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-
+import os
 import sqlite3
 import argparse
 
@@ -72,8 +72,8 @@ def connect_databases(device):
         print(err)
         print(dbfile_books)
         exit(1)
-        
-    
+
+
     try:
         dbfile_notepads = os.path.join(device, 'Sony_Reader','database','notepads.db')
         conn_notepads = sqlite3.connect(dbfile_notepads)
@@ -88,14 +88,14 @@ def print_tables(device):
     conn_books, conn_notepads = connect_databases(device)
     c_b = conn_books.cursor()
     c_np = conn_books.cursor()
-    
+
     c = c_b
     c.execute("SELECT name FROM sqlite_master WHERE type='table';")
     tables = c.fetchall()
     for table in tables:
         print("Table: " + str(table))
         table_name = table[0]
-        
+
         # Retrieve column information
         # Every column will be represented by a tuple with the following attributes:
         # (id, name, type, notnull, default_value, primary_key)
@@ -104,9 +104,9 @@ def print_tables(device):
         values_in_col(c, table_name, True)
         total_rows(c, table_name, True)
         rows(c, table_name, True)
-        
+
         print()
-    
+
     conn_books.close()
     conn_notepads.close()
 
@@ -134,7 +134,7 @@ def del_collections(device):
 def gen_collections(device):
     import re
     import os
-    
+
     conn_books, conn_notepads = connect_databases(device)
     c_b = conn_books.cursor()
     c_np = conn_books.cursor()
@@ -143,7 +143,7 @@ def gen_collections(device):
 
 
     rel_path_prog = re.compile(r"^"+os.path.join("Sony_Reader","media","books")+os.path.sep+"(.*)$")
-    
+
     for row in c.execute('SELECT * FROM books ORDER BY title').fetchall():
         print(row)
         try:
@@ -157,10 +157,10 @@ def gen_collections(device):
             print(filepath)
             print()
             continue
-        
+
         if(rel_path != ''):
             print("put this content into a collection...")
-            
+
             #check if collection already exists
             collection_name = rel_path
             result = c.execute("SELECT _id FROM collection WHERE title=?", (collection_name,)).fetchone()
@@ -173,9 +173,9 @@ def gen_collections(device):
                 collection_id = result[0]
             else:
                 collection_id = result[0]
-            
+
             print("belongs to collection %d" % collection_id)
-            
+
             #check if book is already in collections table
             result = c.execute("SELECT _id FROM collections WHERE content_id=? AND collection_id=?", (book_id,collection_id)).fetchone()
             if(result is None):
@@ -184,7 +184,7 @@ def gen_collections(device):
                 result = c.execute("UPDATE collections SET collection_id=? WHERE content_id=?", (collection_id, book_id))
         print()
 
- 
+
     #print the new table
     for table_name in ['collection', 'collections']:
         table_col_info(c, table_name, True)
@@ -192,14 +192,14 @@ def gen_collections(device):
         total_rows(c, table_name, True)
         rows(c, table_name, True)
         print()
-        
+
     # Save (commit) the changes
     conn_books.commit()
-    
+
     conn_books.close()
     conn_notepads.close()
 
-    
+
 
 if __name__ == '__main__':
 
